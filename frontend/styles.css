@@ -1,0 +1,667 @@
+/* リセットとベーススタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #007acc;
+    --primary-dark: #005a9e;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    
+    --bg-color: #1a1a1a;
+    --surface-color: #2d2d2d;
+    --surface-light: #3d3d3d;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --border-color: #404040;
+    
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', Monaco, 'Cascadia Code', monospace;
+    
+    --border-radius: 8px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --transition: all 0.2s ease;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* レイアウト */
+#app {
+    min-height: 100vh;
+    position: relative;
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+}
+
+.screen.active {
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* ヘッダー */
+.app-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.app-title {
+    font-size: 3rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary-color), #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+.app-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ライブラリグリッド */
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.library-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.library-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+
+.library-card:active {
+    transform: translateY(0);
+}
+
+.language-tag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.library-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.library-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.library-features {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+.library-features li {
+    padding: 0.25rem 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.library-features li:before {
+    content: "✓";
+    color: var(--success-color);
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+/* ボタン */
+.action-btn, .btn {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.action-btn:hover, .btn:hover {
+    background: var(--surface-light);
+    border-color: var(--primary-color);
+}
+
+.btn.primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.btn.primary:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.additional-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* ターミナル画面 */
+.terminal-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-color);
+}
+
+.terminal-header {
+    background: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem;
+}
+
+.terminal-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.terminal-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+}
+
+.control-btn {
+    background: var(--surface-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.control-btn:hover {
+    background: var(--border-color);
+    border-color: var(--primary-color);
+}
+
+.terminal-info {
+    background: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem;
+}
+
+.library-details h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.library-details p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.library-features, .sample-commands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.feature-label, .command-label {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-right: 0.5rem;
+}
+
+.feature-tag {
+    background: var(--surface-light);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.command-tag {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.command-tag:hover {
+    background: var(--primary-dark);
+}
+
+.terminal-wrapper {
+    flex: 1;
+    padding: 1rem;
+    background: #000;
+}
+
+#terminal {
+    height: 100%;
+    background: #000;
+}
+
+/* xterm.js のカスタマイズ */
+.xterm {
+    font-family: var(--font-mono);
+}
+
+.xterm-viewport {
+    background-color: #000 !important;
+}
+
+.xterm-screen {
+    background-color: #000 !important;
+}
+
+/* ギャラリー画面 */
+.gallery-header, .help-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.gallery-header h2, .help-header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.screenshot-item {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.screenshot-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+
+.screenshot-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.screenshot-info {
+    padding: 1rem;
+    position: relative;
+}
+
+.screenshot-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.screenshot-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.placeholder-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--warning-color);
+    color: var(--bg-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+/* プレースホルダー用ターミナルスタイル */
+.placeholder-preview {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.placeholder-terminal {
+    width: 90%;
+    background: #1a1a1a;
+    border: 1px solid #404040;
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.placeholder-header {
+    background: #404040;
+    margin: -0.5rem -0.5rem 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.placeholder-header::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #ff5f56;
+    border-radius: 50%;
+    box-shadow: 12px 0 0 #ffbd2e, 24px 0 0 #27ca3f;
+}
+
+.placeholder-title {
+    color: var(--text-primary);
+    font-size: 0.7rem;
+    margin-left: 36px;
+}
+
+.placeholder-content {
+    line-height: 1.3;
+}
+
+.placeholder-prompt {
+    color: #00ff00;
+    margin-bottom: 0.25rem;
+}
+
+.placeholder-output {
+    color: var(--text-secondary);
+    margin-bottom: 0.2rem;
+    margin-left: 0.5rem;
+}
+
+/* ヘルプ画面 */
+.help-content {
+    max-width: 800px;
+}
+
+.help-section {
+    margin-bottom: 2rem;
+}
+
+.help-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.help-section ol, .help-section ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.help-section li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.language-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.language-group {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.language-group h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.language-group ul {
+    margin-left: 0;
+    list-style: none;
+}
+
+.language-group li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.language-group li:last-child {
+    border-bottom: none;
+}
+
+.command-examples {
+    display: grid;
+    gap: 1rem;
+}
+
+.command-example {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.command-example code {
+    font-family: var(--font-mono);
+    background: #000;
+    color: #00ff00;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    min-width: 200px;
+}
+
+/* ローディング画面 */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 26, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.loading.hidden {
+    display: none;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* モーダル */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    backdrop-filter: blur(4px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-content h3 {
+    color: var(--danger-color);
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .app-title {
+        font-size: 2rem;
+    }
+    
+    .library-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .terminal-controls {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .additional-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .language-groups {
+        grid-template-columns: 1fr;
+    }
+    
+    .command-example {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .command-example code {
+        min-width: auto;
+        width: 100%;
+    }
+}
+
+/* ダークモード対応のスクロールバー */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--surface-light);
+}
+
+/* アニメーション */
+.screen {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

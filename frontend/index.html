@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLI Library Comparison</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/xterm/5.3.0/xterm.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- メインメニュー画面 -->
+        <div id="menu-screen" class="screen active">
+            <div class="container">
+                <header class="app-header">
+                    <h1 class="app-title">CLI Library Comparison</h1>
+                    <p class="app-subtitle">10種類の人気CLIライブラリを体験・比較できるWebアプリケーション</p>
+                </header>
+
+                <div class="library-grid">
+                    <!-- ライブラリカードはJavaScriptで動的に生成 -->
+                </div>
+
+                <div class="additional-actions">
+                    <button id="screenshots-btn" class="action-btn secondary">
+                        📸 スクリーンショットギャラリー
+                    </button>
+                    <button id="help-btn" class="action-btn secondary">
+                        ❓ ヘルプ
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ターミナル画面 -->
+        <div id="terminal-screen" class="screen">
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <button id="back-to-menu" class="control-btn">
+                            ← メインメニューへ戻る
+                        </button>
+                        <div class="terminal-title">
+                            <span id="current-library-name">Terminal</span>
+                        </div>
+                        <button id="clear-terminal" class="control-btn">
+                            🗑️ クリア
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="terminal-info">
+                    <div class="library-details">
+                        <h3 id="library-info-name"></h3>
+                        <p id="library-info-description"></p>
+                        <div class="library-features">
+                            <span class="feature-label">特徴:</span>
+                            <div id="library-features-list"></div>
+                        </div>
+                        <div class="sample-commands">
+                            <span class="command-label">サンプルコマンド:</span>
+                            <div id="sample-commands-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal-wrapper">
+                    <div id="terminal"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スクリーンショットギャラリー画面 -->
+        <div id="gallery-screen" class="screen">
+            <div class="container">
+                <header class="gallery-header">
+                    <button id="back-from-gallery" class="control-btn">
+                        ← メインメニューへ戻る
+                    </button>
+                    <h2>スクリーンショットギャラリー</h2>
+                </header>
+                
+                <div class="gallery-grid">
+                    <!-- スクリーンショットはJavaScriptで動的に生成 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ヘルプ画面 -->
+        <div id="help-screen" class="screen">
+            <div class="container">
+                <header class="help-header">
+                    <button id="back-from-help" class="control-btn">
+                        ← メインメニューへ戻る
+                    </button>
+                    <h2>ヘルプ</h2>
+                </header>
+
+                <div class="help-content">
+                    <section class="help-section">
+                        <h3>使い方</h3>
+                        <ol>
+                            <li>メインメニューから比較したいCLIライブラリを選択します</li>
+                            <li>選択したライブラリのターミナル画面が表示されます</li>
+                            <li>コマンドを入力して各ライブラリの特徴を体験できます</li>
+                            <li>メインメニューに戻って他のライブラリと比較できます</li>
+                        </ol>
+                    </section>
+
+                    <section class="help-section">
+                        <h3>対応ライブラリ</h3>
+                        <div class="language-groups">
+                            <div class="language-group">
+                                <h4>Python</h4>
+                                <ul>
+                                    <li><strong>Click</strong> - デコレーターベースのコマンド定義</li>
+                                    <li><strong>Typer</strong> - 型ヒント活用とリッチ出力</li>
+                                    <li><strong>Fire</strong> - 自動CLI生成</li>
+                                </ul>
+                            </div>
+                            <div class="language-group">
+                                <h4>Node.js</h4>
+                                <ul>
+                                    <li><strong>Commander.js</strong> - チェーン可能なAPI</li>
+                                    <li><strong>Yargs</strong> - 複雑なオプション処理</li>
+                                    <li><strong>Inquirer.js</strong> - インタラクティブプロンプト</li>
+                                </ul>
+                            </div>
+                            <div class="language-group">
+                                <h4>その他の言語</h4>
+                                <ul>
+                                    <li><strong>Cobra (Go)</strong> - サブコマンド構造</li>
+                                    <li><strong>Clap (Rust)</strong> - 強力な引数解析</li>
+                                    <li><strong>Thor (Ruby)</strong> - Rakeライクなタスク定義</li>
+                                    <li><strong>OptionParser (Ruby)</strong> - シンプルなオプション解析</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="help-section">
+                        <h3>基本コマンド</h3>
+                        <div class="command-examples">
+                            <div class="command-example">
+                                <code>--help</code>
+                                <span>ヘルプを表示</span>
+                            </div>
+                            <div class="command-example">
+                                <code>hello --name Your-Name</code>
+                                <span>基本的な挨拶コマンド</span>
+                            </div>
+                            <div class="command-example">
+                                <code>info</code>
+                                <span>ライブラリ情報を表示</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ローディング画面 -->
+    <div id="loading" class="loading">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- エラーモーダル -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <h3>エラー</h3>
+            <p id="error-message"></p>
+            <button id="close-error" class="btn primary">OK</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/5.3.0/xterm.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/5.3.0/addons/fit/fit.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

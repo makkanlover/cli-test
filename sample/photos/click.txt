@@ -1,0 +1,9 @@
+CLICK CLI Screenshot Placeholder
+        
+This is a placeholder for the click CLI library screenshot.
+To capture real screenshots, you would typically use tools like:
+- Puppeteer with a headless browser
+- Playwright for cross-browser screenshots  
+- Terminal screenshot tools like 'script' or 'asciinema'
+
+Generated: 2025-07-21T15:03:09.843Z

@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "Bash(npm start)",
+      "Bash(python:*)",
+      "Bash(npm test)",
+      "Bash(timeout 10s npm start)",
+      "Bash(PORT=3001 timeout 10s npm start)",
+      "Bash(node:*)",
+      "Bash(npm init:*)",
+      "Bash(rmdir:*)",
+      "Bash(rm:*)",
+      "Bash(taskkill:*)",
+      "Bash(del package-lock.json)",
+      "Bash(ls:*)",
+      "Bash(py --version)",
+      "Bash(where python)",
+      "Bash(\"C:\\Users\\aoyat\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe\" --version)",
+      "Bash(npm:*)",
+      "Bash(mv:*)",
+      "WebFetch(domain:www.python.org)",
+      "Bash(curl:*)",
+      "Bash(cmd /c:*)",
+      "Bash(refreshenv)",
+      "Bash(powershell:*)",
+      "Bash(start http://localhost:3000)"
+    ],
+    "deny": []
+  }
+}
